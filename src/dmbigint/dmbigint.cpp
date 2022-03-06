@@ -6,8 +6,6 @@
 #include <dmbigint.h>
 
 #include <uint256.h>
-//#include <crypto/common.h>
-
 
 template <unsigned int BITS>
 base_uint<BITS>::base_uint(const std::string& str)
