@@ -5,7 +5,7 @@
 
 #include <dmbigint.h>
 
-#include <uint256.h>
+#include <dmuint256.h>
 
 template <unsigned int BITS>
 base_uint<BITS>::base_uint(const std::string& str)

@@ -6,18 +6,18 @@
 /**
  * Utilities for converting data from/to strings.
  */
-#ifndef BITCOIN_UTIL_STRENCODINGS_H
-#define BITCOIN_UTIL_STRENCODINGS_H
+#ifndef __DM_STRENCODINGS_H__
+#define __DM_STRENCODINGS_H__
 
-#include <attributes.h>
-#include <span.h>
+#include <dmattributes.h>
+#include <dmspan.h>
 
 #include <cstdint>
 #include <iterator>
 #include <string>
 #include <vector>
 
-/** Used by SanitizeString() */
+ /** Used by SanitizeString() */
 enum SafeChars
 {
     SAFE_CHARS_DEFAULT, //!< The full set of allowed chars
@@ -99,42 +99,42 @@ constexpr inline bool IsSpace(char c) noexcept {
  * @returns true if the entire string could be parsed as valid integer,
  *   false if not the entire string could be parsed or when overflow or underflow occurred.
  */
-[[nodiscard]] bool ParseInt32(const std::string& str, int32_t *out);
+[[nodiscard]] bool ParseInt32(const std::string& str, int32_t* out);
 
 /**
  * Convert string to signed 64-bit integer with strict parse error feedback.
  * @returns true if the entire string could be parsed as valid integer,
  *   false if not the entire string could be parsed or when overflow or underflow occurred.
  */
-[[nodiscard]] bool ParseInt64(const std::string& str, int64_t *out);
+[[nodiscard]] bool ParseInt64(const std::string& str, int64_t* out);
 
 /**
  * Convert decimal string to unsigned 8-bit integer with strict parse error feedback.
  * @returns true if the entire string could be parsed as valid integer,
  *   false if not the entire string could be parsed or when overflow or underflow occurred.
  */
-[[nodiscard]] bool ParseUInt8(const std::string& str, uint8_t *out);
+[[nodiscard]] bool ParseUInt8(const std::string& str, uint8_t* out);
 
 /**
  * Convert decimal string to unsigned 32-bit integer with strict parse error feedback.
  * @returns true if the entire string could be parsed as valid integer,
  *   false if not the entire string could be parsed or when overflow or underflow occurred.
  */
-[[nodiscard]] bool ParseUInt32(const std::string& str, uint32_t *out);
+[[nodiscard]] bool ParseUInt32(const std::string& str, uint32_t* out);
 
 /**
  * Convert decimal string to unsigned 64-bit integer with strict parse error feedback.
  * @returns true if the entire string could be parsed as valid integer,
  *   false if not the entire string could be parsed or when overflow or underflow occurred.
  */
-[[nodiscard]] bool ParseUInt64(const std::string& str, uint64_t *out);
+[[nodiscard]] bool ParseUInt64(const std::string& str, uint64_t* out);
 
 /**
  * Convert string to double with strict parse error feedback.
  * @returns true if the entire string could be parsed as valid double,
  *   false if not the entire string could be parsed or when overflow or underflow occurred.
  */
-[[nodiscard]] bool ParseDouble(const std::string& str, double *out);
+[[nodiscard]] bool ParseDouble(const std::string& str, double* out);
 
 /**
  * Convert a span of bytes to a lower-case hexadecimal string.
@@ -159,7 +159,7 @@ bool TimingResistantEqual(const T& a, const T& b)
     if (b.size() == 0) return a.size() == 0;
     size_t accumulator = a.size() ^ b.size();
     for (size_t i = 0; i < a.size(); i++)
-        accumulator |= a[i] ^ b[i%b.size()];
+        accumulator |= a[i] ^ b[i % b.size()];
     return accumulator == 0;
 }
 
@@ -168,7 +168,7 @@ bool TimingResistantEqual(const T& a, const T& b)
  * @returns true on success, false on error.
  * @note The result must be in the range (-10^18,10^18), otherwise an overflow error will trigger.
  */
-[[nodiscard]] bool ParseFixedPoint(const std::string &val, int decimals, int64_t *amount_out);
+[[nodiscard]] bool ParseFixedPoint(const std::string& val, int decimals, int64_t* amount_out);
 
 /** Convert from one power-of-2 number base to another. */
 template<int frombits, int tobits, bool pad, typename O, typename I>
@@ -188,7 +188,8 @@ bool ConvertBits(const O& outfn, I it, I end) {
     }
     if (pad) {
         if (bits) outfn((acc << (tobits - bits)) & maxv);
-    } else if (bits >= frombits || ((acc << (tobits - bits)) & maxv)) {
+    }
+    else if (bits >= frombits || ((acc << (tobits - bits)) & maxv)) {
         return false;
     }
     return true;
@@ -257,4 +258,4 @@ std::string ToUpper(const std::string& str);
  */
 std::string Capitalize(std::string str);
 
-#endif // BITCOIN_UTIL_STRENCODINGS_H
+#endif // __DM_STRENCODINGS_H__

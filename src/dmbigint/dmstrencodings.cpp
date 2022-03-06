@@ -3,10 +3,10 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <strencodings.h>
+#include <dmstrencodings.h>
 #include <dmstring.h>
 
-#include <tinyformat.h>
+#include <dmtinyformat.h>
 
 #include <algorithm>
 #include <cstdlib>

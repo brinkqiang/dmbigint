@@ -1,10 +1,6 @@
-// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2020 The Bitcoin Core developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_UINT256_H
-#define BITCOIN_UINT256_H
+#ifndef __DM_UINT256_H__
+#define __DM_UINT256_H__
 
 #include <assert.h>
 #include <cstring>
@@ -24,7 +20,7 @@ public:
     constexpr base_blob() : m_data() {}
 
     /* constructor for constants between 1 and 255 */
-    constexpr explicit base_blob(uint8_t v) : m_data{v} {}
+    constexpr explicit base_blob(uint8_t v) : m_data{ v } {}
 
     explicit base_blob(const std::vector<unsigned char>& vch);
 
@@ -84,13 +80,13 @@ public:
     {
         const uint8_t* ptr = m_data + pos * 8;
         return ((uint64_t)ptr[0]) | \
-               ((uint64_t)ptr[1]) << 8 | \
-               ((uint64_t)ptr[2]) << 16 | \
-               ((uint64_t)ptr[3]) << 24 | \
-               ((uint64_t)ptr[4]) << 32 | \
-               ((uint64_t)ptr[5]) << 40 | \
-               ((uint64_t)ptr[6]) << 48 | \
-               ((uint64_t)ptr[7]) << 56;
+            ((uint64_t)ptr[1]) << 8 | \
+            ((uint64_t)ptr[2]) << 16 | \
+            ((uint64_t)ptr[3]) << 24 | \
+            ((uint64_t)ptr[4]) << 32 | \
+            ((uint64_t)ptr[5]) << 40 | \
+            ((uint64_t)ptr[6]) << 48 | \
+            ((uint64_t)ptr[7]) << 56;
     }
 
     template<typename Stream>
@@ -134,7 +130,7 @@ public:
  * This is a separate function because the constructor uint256(const char*) can result
  * in dangerously catching uint256(0).
  */
-inline uint256 uint256S(const char *str)
+inline uint256 uint256S(const char* str)
 {
     uint256 rv;
     rv.SetHex(str);
@@ -151,4 +147,4 @@ inline uint256 uint256S(const std::string& str)
     return rv;
 }
 
-#endif // BITCOIN_UINT256_H
+#endif // __DM_UINT256_H__
