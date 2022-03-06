@@ -6,7 +6,7 @@
 #include <dmbigint.h>
 
 #include <dmuint256.h>
-
+#include <mutex>
 template <unsigned int BITS>
 base_uint<BITS>::base_uint(const std::string& str)
 {
@@ -245,9 +245,16 @@ uint32_t CDMBigInt::GetCompact(bool fNegative) const
 
 int islittleendian(void)
 {
-    int	littlendian = 1;
-    char* endptr = (char*)&littlendian;
-    return (int)*endptr;
+    static std::once_flag oc;
+    static int islittle = 0;
+    std::call_once(oc, [&]()
+    {
+        int	littlendian = 1;
+        char* endptr = (char*)&littlendian;
+        islittle = (int)*endptr;
+    });
+
+    return islittle;
 }
 
 inline uint16_t bswap_16(uint16_t x)
