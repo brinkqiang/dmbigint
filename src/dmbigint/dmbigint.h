@@ -247,12 +247,12 @@ public:
 };
 
 /** 256-bit unsigned big integer. */
-class arith_uint256 : public base_uint<256> {
+class CDMBigInt : public base_uint<256> {
 public:
-    arith_uint256() {}
-    arith_uint256(const base_uint<256>& b) : base_uint<256>(b) {}
-    arith_uint256(uint64_t b) : base_uint<256>(b) {}
-    explicit arith_uint256(const std::string& str) : base_uint<256>(str) {}
+    CDMBigInt() {}
+    CDMBigInt(const base_uint<256>& b) : base_uint<256>(b) {}
+    CDMBigInt(uint64_t b) : base_uint<256>(b) {}
+    explicit CDMBigInt(const std::string& str) : base_uint<256>(str) {}
 
     /**
      * The "compact" format is a representation of a whole
@@ -274,14 +274,14 @@ public:
      * complexities of the sign bit and using base 256 are probably an
      * implementation accident.
      */
-    arith_uint256& SetCompact(uint32_t nCompact, bool* pfNegative = nullptr, bool* pfOverflow = nullptr);
+    CDMBigInt& SetCompact(uint32_t nCompact, bool* pfNegative = nullptr, bool* pfOverflow = nullptr);
     uint32_t GetCompact(bool fNegative = false) const;
 
-    friend uint256 ArithToUint256(const arith_uint256&);
-    friend arith_uint256 UintToArith256(const uint256&);
+    friend uint256 ArithToUint256(const CDMBigInt&);
+    friend CDMBigInt UintToArith256(const uint256&);
 };
 
-uint256 ArithToUint256(const arith_uint256&);
-arith_uint256 UintToArith256(const uint256&);
+uint256 ArithToUint256(const CDMBigInt&);
+CDMBigInt UintToArith256(const uint256&);
 
 #endif // __DM_BIGINT_H__
