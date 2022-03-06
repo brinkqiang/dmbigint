@@ -3,16 +3,16 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <arith_uint256.h>
+#include <dmbigint.h>
 
 #include <uint256.h>
-#include <crypto/common.h>
+//#include <crypto/common.h>
 
 
 template <unsigned int BITS>
 base_uint<BITS>::base_uint(const std::string& str)
 {
-    static_assert(BITS/32 > 0 && BITS%32 == 0, "Template parameter BITS must be a positive multiple of 32.");
+    static_assert(BITS / 32 > 0 && BITS % 32 == 0, "Template parameter BITS must be a positive multiple of 32.");
 
     SetHex(str);
 }
@@ -207,7 +207,8 @@ arith_uint256& arith_uint256::SetCompact(uint32_t nCompact, bool* pfNegative, bo
     if (nSize <= 3) {
         nWord >>= 8 * (3 - nSize);
         *this = nWord;
-    } else {
+    }
+    else {
         *this = nWord;
         *this <<= 8 * (nSize - 3);
     }
@@ -215,8 +216,8 @@ arith_uint256& arith_uint256::SetCompact(uint32_t nCompact, bool* pfNegative, bo
         *pfNegative = nWord != 0 && (nCompact & 0x00800000) != 0;
     if (pfOverflow)
         *pfOverflow = nWord != 0 && ((nSize > 34) ||
-                                     (nWord > 0xff && nSize > 33) ||
-                                     (nWord > 0xffff && nSize > 32));
+            (nWord > 0xff && nSize > 33) ||
+            (nWord > 0xffff && nSize > 32));
     return *this;
 }
 
@@ -226,7 +227,8 @@ uint32_t arith_uint256::GetCompact(bool fNegative) const
     uint32_t nCompact = 0;
     if (nSize <= 3) {
         nCompact = GetLow64() << 8 * (3 - nSize);
-    } else {
+    }
+    else {
         arith_uint256 bn = *this >> 8 * (nSize - 3);
         nCompact = bn.GetLow64();
     }
@@ -243,17 +245,33 @@ uint32_t arith_uint256::GetCompact(bool fNegative) const
     return nCompact;
 }
 
-uint256 ArithToUint256(const arith_uint256 &a)
+void static inline WriteLE32(unsigned char* ptr, uint32_t x)
+{
+    //uint32_t v = htole32(x);
+    uint32_t v = x;
+    memcpy(ptr, (char*)&v, 4);
+}
+
+uint256 ArithToUint256(const arith_uint256& a)
 {
     uint256 b;
-    for(int x=0; x<a.WIDTH; ++x)
-        WriteLE32(b.begin() + x*4, a.pn[x]);
+    for (int x = 0; x < a.WIDTH; ++x)
+        WriteLE32(b.begin() + x * 4, a.pn[x]);
     return b;
 }
-arith_uint256 UintToArith256(const uint256 &a)
+
+uint32_t static inline ReadLE32(const unsigned char* ptr)
+{
+    uint32_t x;
+    memcpy((char*)&x, ptr, 4);
+    return x;
+    //return le32toh(x);
+}
+
+arith_uint256 UintToArith256(const uint256& a)
 {
     arith_uint256 b;
-    for(int x=0; x<b.WIDTH; ++x)
-        b.pn[x] = ReadLE32(a.begin() + x*4);
+    for (int x = 0; x < b.WIDTH; ++x)
+        b.pn[x] = ReadLE32(a.begin() + x * 4);
     return b;
 }

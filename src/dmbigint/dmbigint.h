@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_ARITH_UINT256_H
-#define BITCOIN_ARITH_UINT256_H
+#ifndef __DM_BIGINT_H__
+#define __DM_BIGINT_H__
 
 #include <cstring>
 #include <limits>
@@ -30,7 +30,7 @@ public:
 
     base_uint()
     {
-        static_assert(BITS/32 > 0 && BITS%32 == 0, "Template parameter BITS must be a positive multiple of 32.");
+        static_assert(BITS / 32 > 0 && BITS % 32 == 0, "Template parameter BITS must be a positive multiple of 32.");
 
         for (int i = 0; i < WIDTH; i++)
             pn[i] = 0;
@@ -38,7 +38,7 @@ public:
 
     base_uint(const base_uint& b)
     {
-        static_assert(BITS/32 > 0 && BITS%32 == 0, "Template parameter BITS must be a positive multiple of 32.");
+        static_assert(BITS / 32 > 0 && BITS % 32 == 0, "Template parameter BITS must be a positive multiple of 32.");
 
         for (int i = 0; i < WIDTH; i++)
             pn[i] = b.pn[i];
@@ -53,7 +53,7 @@ public:
 
     base_uint(uint64_t b)
     {
-        static_assert(BITS/32 > 0 && BITS%32 == 0, "Template parameter BITS must be a positive multiple of 32.");
+        static_assert(BITS / 32 > 0 && BITS % 32 == 0, "Template parameter BITS must be a positive multiple of 32.");
 
         pn[0] = (unsigned int)b;
         pn[1] = (unsigned int)(b >> 32);
@@ -274,14 +274,14 @@ public:
      * complexities of the sign bit and using base 256 are probably an
      * implementation accident.
      */
-    arith_uint256& SetCompact(uint32_t nCompact, bool *pfNegative = nullptr, bool *pfOverflow = nullptr);
+    arith_uint256& SetCompact(uint32_t nCompact, bool* pfNegative = nullptr, bool* pfOverflow = nullptr);
     uint32_t GetCompact(bool fNegative = false) const;
 
-    friend uint256 ArithToUint256(const arith_uint256 &);
-    friend arith_uint256 UintToArith256(const uint256 &);
+    friend uint256 ArithToUint256(const arith_uint256&);
+    friend arith_uint256 UintToArith256(const uint256&);
 };
 
-uint256 ArithToUint256(const arith_uint256 &);
-arith_uint256 UintToArith256(const uint256 &);
+uint256 ArithToUint256(const arith_uint256&);
+arith_uint256 UintToArith256(const uint256&);
 
-#endif // BITCOIN_ARITH_UINT256_H
+#endif // __DM_BIGINT_H__

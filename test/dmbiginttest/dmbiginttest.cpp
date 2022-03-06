@@ -1,13 +1,12 @@
 
 #include "dmbigint.h"
+#include <iostream>
 
-int main( int argc, char* argv[] ) {
+int main(int argc, char* argv[]) {
 
-    Idmbigint* module = dmbigintGetModule();
-    if (module)
-    {
-        module->Test();
-        module->Release();
-    }
+    arith_uint256 bigint = -1;
+    bigint += 1234;
+
+    std::cout << bigint.ToString() << std::endl;
     return 0;
 }
