@@ -1,23 +1,16 @@
-// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2020 The Bitcoin Core developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-/**
- * Utilities for converting data from/to strings.
- */
 #ifndef __DM_STRENCODINGS_H__
 #define __DM_STRENCODINGS_H__
 
-#include <dmattributes.h>
-#include <dmspan.h>
+#include "dmattributes.h"
+#include "dmspan.h"
 
 #include <cstdint>
 #include <iterator>
 #include <string>
 #include <vector>
 
- /** Used by SanitizeString() */
+/** Used by SanitizeString() */
 enum SafeChars
 {
     SAFE_CHARS_DEFAULT, //!< The full set of allowed chars

@@ -2,7 +2,7 @@
 #ifndef __DM_STRING_STRING_H__
 #define __DM_STRING_STRING_H__
 
-#include <dmattributes.h>
+#include "dmattributes.h"
 
 #include <algorithm>
 #include <array>
