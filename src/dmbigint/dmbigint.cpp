@@ -148,7 +148,7 @@ std::string base_uint<BITS>::GetHex() const
 template <unsigned int BITS>
 void base_uint<BITS>::SetHex(const char* psz)
 {
-    *this = UintToArith256(uint256S(psz));
+    *this = Uint256ToBigInt(uint256S(psz));
 }
 
 template <unsigned int BITS>
@@ -311,7 +311,7 @@ uint32_t static inline ReadLE32(const unsigned char* ptr)
     return bswap_32(x);
 }
 
-CDMBigInt UintToArith256(const uint256& a)
+CDMBigInt Uint256ToBigInt(const uint256& a)
 {
     CDMBigInt b;
     for (int x = 0; x < b.WIDTH; ++x)

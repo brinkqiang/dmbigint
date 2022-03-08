@@ -274,10 +274,10 @@ public:
     uint32_t GetCompact(bool fNegative = false) const;
 
     friend uint256 BigIntToUint256(const CDMBigInt&);
-    friend CDMBigInt UintToArith256(const uint256&);
+    friend CDMBigInt Uint256ToBigInt(const uint256&);
 };
 
 uint256 BigIntToUint256(const CDMBigInt&);
-CDMBigInt UintToArith256(const uint256&);
+CDMBigInt Uint256ToBigInt(const uint256&);
 
 #endif // __DM_BIGINT_H__
