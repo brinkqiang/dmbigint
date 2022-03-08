@@ -273,11 +273,11 @@ public:
     CDMBigInt& SetCompact(uint32_t nCompact, bool* pfNegative = nullptr, bool* pfOverflow = nullptr);
     uint32_t GetCompact(bool fNegative = false) const;
 
-    friend uint256 ArithToUint256(const CDMBigInt&);
+    friend uint256 BigIntToUint256(const CDMBigInt&);
     friend CDMBigInt UintToArith256(const uint256&);
 };
 
-uint256 ArithToUint256(const CDMBigInt&);
+uint256 BigIntToUint256(const CDMBigInt&);
 CDMBigInt UintToArith256(const uint256&);
 
 #endif // __DM_BIGINT_H__

@@ -142,7 +142,7 @@ double base_uint<BITS>::getdouble() const
 template <unsigned int BITS>
 std::string base_uint<BITS>::GetHex() const
 {
-    return ArithToUint256(*this).GetHex();
+    return BigIntToUint256(*this).GetHex();
 }
 
 template <unsigned int BITS>
@@ -296,7 +296,7 @@ void static inline WriteLE32(unsigned char* ptr, uint32_t x)
     memcpy(ptr, (char*)&v, 4);
 }
 
-uint256 ArithToUint256(const CDMBigInt& a)
+uint256 BigIntToUint256(const CDMBigInt& a)
 {
     uint256 b;
     for (int x = 0; x < a.WIDTH; ++x)
