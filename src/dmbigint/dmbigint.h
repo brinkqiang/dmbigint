@@ -7,6 +7,7 @@
 #include <stdexcept>
 #include <stdint.h>
 #include <string>
+#include <iostream>
 
 class uint256;
 
@@ -275,6 +276,16 @@ public:
 
     friend uint256 BigIntToUint256(const CDMBigInt&);
     friend CDMBigInt Uint256ToBigInt(const uint256&);
+	friend std::ostream& operator<<(std::ostream& out, const CDMBigInt& bigint) {
+        out << bigint.ToString();
+		return out;
+	}
+	friend std::istream& operator>>(std::istream& in, CDMBigInt& bigint) {
+        std::string str;
+        in >> str;
+        bigint.SetHex(str);
+		return in;
+	}
 };
 
 uint256 BigIntToUint256(const CDMBigInt&);

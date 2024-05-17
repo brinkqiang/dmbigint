@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.8)
 
 PROJECT(dmbigint)
 
@@ -19,7 +19,7 @@ OPTION(USE_DMBIGINT "use dmbigint" OFF)
 
 ModuleImportAll("thirdparty")
 LibImport("dmbigint" "src/dmbigint")
-ExeImport("test" "dmbigint")
+ExeImport("test" "dmbigint;dmtest")
 
 #ADD_CUSTOM_COMMAND(
 #TARGET dmbiginttest
