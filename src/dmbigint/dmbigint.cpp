@@ -196,7 +196,7 @@ template unsigned int base_uint<256>::bits() const;
 
 // This implementation directly uses shifts instead of going
 // through an intermediate MPI representation.
-CDMBigInt& CDMBigInt::SetCompact(uint32_t nCompact, bool* pfNegative, bool* pfOverflow)
+CDMBigUint& CDMBigUint::SetCompact(uint32_t nCompact, bool* pfNegative, bool* pfOverflow)
 {
     int nSize = nCompact >> 24;
     uint32_t nWord = nCompact & 0x007fffff;
@@ -217,7 +217,7 @@ CDMBigInt& CDMBigInt::SetCompact(uint32_t nCompact, bool* pfNegative, bool* pfOv
     return *this;
 }
 
-uint32_t CDMBigInt::GetCompact(bool fNegative) const
+uint32_t CDMBigUint::GetCompact(bool fNegative) const
 {
     int nSize = (bits() + 7) / 8;
     uint32_t nCompact = 0;
@@ -225,7 +225,7 @@ uint32_t CDMBigInt::GetCompact(bool fNegative) const
         nCompact = GetLow64() << 8 * (3 - nSize);
     }
     else {
-        CDMBigInt bn = *this >> 8 * (nSize - 3);
+        CDMBigUint bn = *this >> 8 * (nSize - 3);
         nCompact = bn.GetLow64();
     }
     // The 0x00800000 bit denotes the sign.
@@ -296,7 +296,7 @@ void static inline WriteLE32(unsigned char* ptr, uint32_t x)
     memcpy(ptr, (char*)&v, 4);
 }
 
-uint256 BigIntToUint256(const CDMBigInt& a)
+uint256 BigIntToUint256(const CDMBigUint& a)
 {
     uint256 b;
     for (int x = 0; x < a.WIDTH; ++x)
@@ -311,9 +311,9 @@ uint32_t static inline ReadLE32(const unsigned char* ptr)
     return bswap_32(x);
 }
 
-CDMBigInt Uint256ToBigInt(const uint256& a)
+CDMBigUint Uint256ToBigInt(const uint256& a)
 {
-    CDMBigInt b;
+    CDMBigUint b;
     for (int x = 0; x < b.WIDTH; ++x)
         b.pn[x] = ReadLE32(a.begin() + x * 4);
     return b;

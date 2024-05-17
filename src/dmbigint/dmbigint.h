@@ -244,12 +244,12 @@ public:
 };
 
 /** 256-bit unsigned big integer. */
-class CDMBigInt : public base_uint<256> {
+class CDMBigUint : public base_uint<256> {
 public:
-    CDMBigInt() {}
-    CDMBigInt(const base_uint<256>& b) : base_uint<256>(b) {}
-    CDMBigInt(uint64_t b) : base_uint<256>(b) {}
-    explicit CDMBigInt(const std::string& str) : base_uint<256>(str) {}
+    CDMBigUint() {}
+    CDMBigUint(const base_uint<256>& b) : base_uint<256>(b) {}
+    CDMBigUint(uint64_t b) : base_uint<256>(b) {}
+    explicit CDMBigUint(const std::string& str) : base_uint<256>(str) {}
 
     /**
      * The "compact" format is a representation of a whole
@@ -271,16 +271,16 @@ public:
      * complexities of the sign bit and using base 256 are probably an
      * implementation accident.
      */
-    CDMBigInt& SetCompact(uint32_t nCompact, bool* pfNegative = nullptr, bool* pfOverflow = nullptr);
+    CDMBigUint& SetCompact(uint32_t nCompact, bool* pfNegative = nullptr, bool* pfOverflow = nullptr);
     uint32_t GetCompact(bool fNegative = false) const;
 
-    friend uint256 BigIntToUint256(const CDMBigInt&);
-    friend CDMBigInt Uint256ToBigInt(const uint256&);
-	friend std::ostream& operator<<(std::ostream& out, const CDMBigInt& bigint) {
+    friend uint256 BigIntToUint256(const CDMBigUint&);
+    friend CDMBigUint Uint256ToBigInt(const uint256&);
+	friend std::ostream& operator<<(std::ostream& out, const CDMBigUint& bigint) {
         out << bigint.ToString();
 		return out;
 	}
-	friend std::istream& operator>>(std::istream& in, CDMBigInt& bigint) {
+	friend std::istream& operator>>(std::istream& in, CDMBigUint& bigint) {
         std::string str;
         in >> str;
         bigint.SetHex(str);
@@ -288,7 +288,7 @@ public:
 	}
 };
 
-uint256 BigIntToUint256(const CDMBigInt&);
-CDMBigInt Uint256ToBigInt(const uint256&);
+uint256 BigIntToUint256(const CDMBigUint&);
+CDMBigUint Uint256ToBigInt(const uint256&);
 
 #endif // __DM_BIGINT_H__

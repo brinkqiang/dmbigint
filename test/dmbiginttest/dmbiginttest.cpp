@@ -5,29 +5,29 @@
 
 TEST(CDMBigIntTest, BasicOperations) {
 	// Initialize CDMBigInt variables
-	CDMBigInt bigint1(123);
-	CDMBigInt bigint2(2);
-	CDMBigInt bigint3(10);
+	CDMBigUint bigint1(123);
+	CDMBigUint bigint2(2);
+	CDMBigUint bigint3(10);
 
 	// Test addition
-	EXPECT_EQ(bigint1 + bigint2, CDMBigInt(125));
-	EXPECT_EQ(bigint1 + bigint3, CDMBigInt(133));
-	EXPECT_EQ(bigint2 + bigint3, CDMBigInt(12));
+	EXPECT_EQ(bigint1 + bigint2, CDMBigUint(125));
+	EXPECT_EQ(bigint1 + bigint3, CDMBigUint(133));
+	EXPECT_EQ(bigint2 + bigint3, CDMBigUint(12));
 
 	// Test subtraction
-	EXPECT_EQ(bigint1 - bigint2, CDMBigInt(121));
-	EXPECT_EQ(bigint1 - bigint3, CDMBigInt(113));
-	EXPECT_EQ(bigint3 - bigint2, CDMBigInt(8));
+	EXPECT_EQ(bigint1 - bigint2, CDMBigUint(121));
+	EXPECT_EQ(bigint1 - bigint3, CDMBigUint(113));
+	EXPECT_EQ(bigint3 - bigint2, CDMBigUint(8));
 
 	// Test multiplication
-	EXPECT_EQ(bigint1 * bigint2, CDMBigInt(246));
-	EXPECT_EQ(bigint1 * bigint3, CDMBigInt(1230));
-	EXPECT_EQ(bigint2 * bigint3, CDMBigInt(20));
+	EXPECT_EQ(bigint1 * bigint2, CDMBigUint(246));
+	EXPECT_EQ(bigint1 * bigint3, CDMBigUint(1230));
+	EXPECT_EQ(bigint2 * bigint3, CDMBigUint(20));
 
 	// Test division
-	EXPECT_EQ(bigint1 / bigint2, CDMBigInt(61));
-	EXPECT_EQ(bigint1 / bigint3, CDMBigInt(12)); // Handle division by zero appropriately
-	EXPECT_EQ(bigint3 / bigint2, CDMBigInt(5)); // Handle division by zero appropriately
+	EXPECT_EQ(bigint1 / bigint2, CDMBigUint(61));
+	EXPECT_EQ(bigint1 / bigint3, CDMBigUint(12)); // Handle division by zero appropriately
+	EXPECT_EQ(bigint3 / bigint2, CDMBigUint(5)); // Handle division by zero appropriately
 
 	// Test modulo
 	// 	EXPECT_EQ(bigint1 % bigint2, CDMBigInt(1));
@@ -37,9 +37,9 @@ TEST(CDMBigIntTest, BasicOperations) {
 
 TEST(CDMBigIntTest, ComparisonOperators) {
 	// Initialize CDMBigInt variables
-	CDMBigInt bigint1(123);
-	CDMBigInt bigint2(2);
-	CDMBigInt bigint3(10);
+	CDMBigUint bigint1(123);
+	CDMBigUint bigint2(2);
+	CDMBigUint bigint3(10);
 
 	// Test equality
 	EXPECT_FALSE(bigint1 == bigint3);
