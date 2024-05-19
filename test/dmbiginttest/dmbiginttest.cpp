@@ -30,9 +30,12 @@ TEST(CDMBigIntTest, BasicOperations) {
 	EXPECT_EQ(bigint3 / bigint2, CDMBigUint(5)); // Handle division by zero appropriately
 
 	// Test modulo
-	// 	EXPECT_EQ(bigint1 % bigint2, CDMBigInt(1));
-	// 	EXPECT_EQ(bigint1 % bigint3, CDMBigInt(3));
-	// 	EXPECT_EQ(bigint3 % bigint2, CDMBigInt(0));
+	EXPECT_EQ(bigint1 % bigint2, CDMBigUint(1));
+	EXPECT_EQ(bigint1 % bigint3, CDMBigUint(3));
+	EXPECT_EQ(bigint3 % bigint2, CDMBigUint(0));
+	EXPECT_EQ(CDMBigUint(10) % CDMBigUint(3), CDMBigUint(1));
+	EXPECT_EQ(CDMBigUint(10) % CDMBigUint(2), CDMBigUint(0));
+	EXPECT_EQ(CDMBigUint(10) % CDMBigUint(4), CDMBigUint(2));
 }
 
 TEST(CDMBigIntTest, ComparisonOperators) {
