@@ -11,7 +11,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
-
+#include <cstdint>
 [[nodiscard]] inline std::string TrimString(const std::string& str, const std::string& pattern = " \f\n\r\t\v")
 {
     std::string::size_type front = str.find_first_not_of(pattern);
